@@ -15,15 +15,15 @@ CREATE TABLE activities(
     activity_name TEXT,
     times_a_week INT,
     activity_pic VARCHAR(3000),
-    activity_latitude FLOAT(20),
-    activity_longitude FLOAT(20),
-    user_id REFERENCES week_user(user_id)
+    activity_latitude FLOAT(20) DEFAULT NULL,
+    activity_longitude FLOAT(20) DEFAULT NULL,
+    user_id REFERENCES week_user(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE reminder(
     reminder_id SERIAL PRIMARY KEY,
-    user_id REFERENCES week_user(user_id),
-    activity_id REFERENCES activities(activity_id),
+    user_id REFERENCES week_user(user_id) ON DELETE CASCADE,
+    activity_id REFERENCES activities(activity_id) ON DELETE CASCADE,
     created_at DATETIME,
     content TEXT
 );
